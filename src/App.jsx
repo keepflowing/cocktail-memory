@@ -9,16 +9,24 @@ const drinkList = []
 
 for (let i = 0; i < 5; i++) {
   const result = await getCocktail()
-  drinkList.push(result.drinks[0].strDrink)
+  drinkList.push(result.drinks[0])
+}
+
+function Card({name, url}) {
+  return (
+    <div className='card'>
+      <h2>{name}</h2>
+      <img src={url}/>
+    </div>
+  )
 }
 
 function App() {
 
-  // console.log(drinkList)
-
   return (
     <>
-      {drinkList.map(drink => <h1 key={drink}>{drink}</h1>)}
+      {drinkList.map(d => <Card 
+      key={d.idDrink} name={d.strDrink} url={d.strDrinkThumb}/>)}
     </>
   )
 }
