@@ -1,15 +1,20 @@
-async function getCocktail() {
-  const fullUrl = 'https://www.thecocktaildb.com/api/json/v1/1/random.php'
-  const result = await fetch(fullUrl, {mode: 'cors'});
-  const data = await result.json();
-  return data;
-}
+import { useState, useEffect } from "react";
 
-const drinkList = []
-
-for (let i = 0; i < 5; i++) {
-  const result = await getCocktail()
-  drinkList.push(result.drinks[0])
+function List({drinks, num}) {
+  const arr = []
+  for (let i = 0; i < num; i++) {
+    arr.push(i)
+  }
+  
+  return (
+    <>
+      {arr.map(n => 
+        <Card 
+          key={n} 
+          name={drinks[n] ? drinks[n].strDrink : 'Loading...'}
+          url={drinks[n] ? drinks[n].strDrinkThumb : 'archerload.gif'}/>)}
+    </>
+  )
 }
 
 function Card({name, url}) {
@@ -22,11 +27,32 @@ function Card({name, url}) {
 }
 
 function App() {
+  const [drinks, setDrinks] = useState([])
+  const [num, setNum] = useState(3)
+
+  const handleNumChange = async (num) => {
+    const arr = []
+    const url = 'https://www.thecocktaildb.com/api/json/v1/1/random.php'
+    for (let i = 0; i < num+1; i++) {
+      const result = await fetch(url)
+      result.json().then(r => {
+        arr.push(r.drinks[0])
+      })
+    }
+    setDrinks([...arr])
+  }  
+
+  useEffect(() => {
+    setDrinks([])
+    handleNumChange(num)
+  }, [num])
 
   return (
     <>
-      {drinkList.map(d => <Card 
-      key={d.idDrink} name={d.strDrink} url={d.strDrinkThumb}/>)}
+      <div id='content'>
+       <List drinks={drinks} num={num}/>
+      </div>
+      <button onClick={() => setNum(num+1)}>New Drinks</button>
     </>
   )
 }

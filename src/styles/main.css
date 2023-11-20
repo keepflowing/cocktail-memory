@@ -3,9 +3,17 @@ html {
 }
 
 #root {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+#content {
     display: flex;
     font-family: Arial, sans-serif;
     justify-content: space-evenly;
+    gap: 2rem;
     padding-top: 2rem;
 }
 
@@ -20,7 +28,7 @@ html {
     height: 270px;
     padding: 0.5rem;
     padding-bottom: 1rem;
-    transition: all 0.3s;
+    transition: all 0.5s;
     width: 250px;
 }
 
@@ -37,6 +45,11 @@ html {
 }
 
 .card:hover {
-    height: 370px;
-    width: 350px;
+    height: 400px;
+    width: 400px;
+}
+
+button {
+    height: 50px;
+    width: 100px;
 }
