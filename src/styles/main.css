@@ -47,8 +47,8 @@ html {
 }
 
 .card:hover {
-    height: 400px;
-    width: 400px;
+    height: 310px;
+    width: 300px;
 }
 
 button {

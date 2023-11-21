@@ -18,7 +18,7 @@ function shuffle(array) {
   return array;
 }
 
-function List({drinks, num, handleClick}) {
+function GenerateCards({drinks, num, handleClick}) {
   const arr = []
   for (let i = 0; i < num; i++) {
     arr.push(i)
@@ -52,6 +52,8 @@ function Card({name, url, drinkId, handleClick}) {
 function App() {
   const [clicked, setClicked] = useState([])
   const [drinks, setDrinks] = useState([])
+  const [score, setScore] = useState(0)
+  const [highScore, setHighScore] = useState(0)
   const [num, setNum] = useState(3)
 
   const handleClick = (id) => {
@@ -63,10 +65,20 @@ function App() {
     }
     if (count === 0) {
       setClicked([...clicked, id])
+      setScore(score + 1)
+      if(score + 1 > highScore) {
+        setHighScore(score + 1)
+      }
     } else {
       setClicked([])
+      setNum(3)
+      setScore(0)
     }
     setDrinks(shuffle([...drinks]))
+    if (clicked.length === drinks.length - 1) {
+      setNum(num + 1);
+      setClicked([])
+    }
   }
 
   const handleNumChange = async (num) => {
@@ -89,10 +101,11 @@ function App() {
   return (
     <>
       <div id='content'>
-       <List drinks={drinks} num={num} handleClick={handleClick}/>
+       <GenerateCards drinks={drinks} num={num} handleClick={handleClick}/>
       </div>
-      <div>{clicked.length}</div>
-      <button onClick={() => setNum(num+1)}>New Drinks</button>
+      <p>Current level: {clicked.length}/{drinks.length}</p>
+      <p>Score: {score} | High Score: {highScore}</p>
+      <button onClick={() => setNum(3)}>Restart</button>
     </>
   )
 }
