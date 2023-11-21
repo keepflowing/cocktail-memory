@@ -43,7 +43,7 @@ function Card({name, url, drinkId, handleClick}) {
       className='card'
       onClick={() => handleClick(drinkId)}
     >
-      <h2>{name}</h2>
+      <h2 className='neonWhite'>{name}</h2>
       <img src={url}/>
     </div>
   )
@@ -66,6 +66,7 @@ function App() {
     if (count === 0) {
       setClicked([...clicked, id])
       setScore(score + 1)
+      setDrinks(shuffle([...drinks]))
       if(score + 1 > highScore) {
         setHighScore(score + 1)
       }
@@ -101,11 +102,12 @@ function App() {
   return (
     <>  
       <div id='top-bar'>
-        <h1>Welcome to the bar!</h1>
+        <h1 className='neonBlue'>Welcome to the bar!</h1>
+        <br></br>
         <nav>
-          <p>Current level: {clicked.length}/{drinks.length}</p>
-          <p>Score: {score} | High Score: {highScore}</p>
-          <button onClick={() => setNum(3)}>Restart</button>
+          <p className='neonYellow'>Current level: {clicked.length}/{drinks.length}</p>
+          <p className='neonRed'>Score: {score} | High Score: {highScore}</p>
+          <p className='neonYellow'><a href='https://github.com/keepflowing/cocktail-memory'>Github repository</a></p>
         </nav>
       </div>
       <div id='content'>

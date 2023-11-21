@@ -1,7 +1,16 @@
+@import url('https://fonts.googleapis.com/css?family=Yellowtail:400');
+
 html {
     background-color: black;
     color: white;
+    font-family: 'Yellowtail', sans-serif;
 }
+
+:root {
+    --blue-neon: #00ffff;
+    --yellow-neon: rgb(244, 255, 122);
+    --red-neon: rgb(195, 4, 11);
+}  
 
 #root {
     align-items: center;
@@ -11,18 +20,21 @@ html {
 }
 
 #top-bar {
-    padding-top: 1rem;
+    font-size: 1.5rem;
+    margin-top: 2rem;
     width: 50%;
 }
 
 #top-bar h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
     text-align: center;
 }
 
 #top-bar nav{
     align-items: center;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 
 #content {
@@ -30,7 +42,6 @@ html {
     justify-content: center;
     display: grid;
     grid-template-columns: repeat(auto-fit, 250px);
-    font-family: Arial, sans-serif;
     gap: 2rem;
     padding-top: 0.5rem;
     width: 80%;
@@ -38,38 +49,185 @@ html {
 
 .card {
     align-items: center;
-    background-color: gray;
+    border: solid #fff 3px;
+    box-shadow: 
+        0 0 7px #fff,
+        0 0 10px #fff,
+        0 0 21px #fff;
     border-radius: 0.5rem;
-    color: black;
+    color: fff;
+    text-shadow:
+        0 0 7px #fff,
+        0 0 10px #fff,
+        0 0 21px #fff;
     cursor: pointer;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    height: 250px;
+    height: 240px;
     padding: 0.5rem;
     padding-bottom: 1rem;
-    transition: all 0.5s;
+    transition: all 0.2s;
 }
 
 .card img {
+    border-radius: 5%;
     width: 90%;
+}
+
+nav p {
+    text-align: left;
+    width: 20%;
+}
+
+nav :nth-child(2) {
+    width: 40%;
+    text-align: center;
+}
+
+nav :nth-child(3) {
+    text-align: right;
 }
 
 .card h2 {
     font-size: 1.5rem;
     font-weight: 800;
     text-align: center;
-    overflow: hidden;
     white-space: nowrap;
 }
 
 @media only screen and (min-width: 1000px) {
     .card:hover {
-        transform: scale(1.1);
+        box-shadow:
+        0 0 7px var(--blue-neon),
+        0 0 10px var(--blue-neon),
+        0 0 21px var(--blue-neon);
+        text-shadow:
+        0 0 7px var(--blue-neon),
+        0 0 10px var(--blue-neon),
+        0 0 21px var(--blue-neon);
     }
 }
 
-button {
-    height: 50px;
-    width: 100px;
+.neonBlue {
+    color: #fff;
+    text-shadow:
+        0 0 7px #fff,
+        0 0 10px #fff,
+        0 0 21px #fff,
+        0 0 42px var(--blue-neon),
+        0 0 82px var(--blue-neon),
+        0 0 92px var(--blue-neon),
+        0 0 102px var(--blue-neon),
+        0 0 151px var(--blue-neon);
+    animation: pulsate-blue 2s infinite alternate; 
+}
+
+@keyframes pulsate-blue {
+    100% {
+      /* Larger blur radius */
+      text-shadow:
+        0 0 4px #fff,
+        0 0 11px #fff,
+        0 0 19px #fff,
+        0 0 40px var(--blue-neon),
+        0 0 80px var(--blue-neon),
+        0 0 90px var(--blue-neon),
+        0 0 100px var(--blue-neon),
+        0 0 150px var(--blue-neon);
+    }
+    0% {
+      /* Smaller blur radius */
+      text-shadow:
+        0 0 2px #fff,
+        0 0 4px #fff,
+        0 0 6px #fff,
+        0 0 10px var(--blue-neon),
+        0 0 45px var(--blue-neon),
+        0 0 55px var(--blue-neon),
+        0 0 70px var(--blue-neon),
+        0 0 80px var(--blue-neon);
+    }
+}
+
+.neonRed {
+    color: #fff;
+    text-shadow:
+        0 0 7px #fff,
+        0 0 10px #fff,
+        0 0 21px #fff,
+        0 0 42px var(--red-neon),
+        0 0 82px var(--red-neon),
+        0 0 92px var(--red-neon),
+        0 0 102px var(--red-neon),
+        0 0 151px var(--red-neon);
+    animation: pulsate-red 2.5s infinite alternate; 
+}
+
+@keyframes pulsate-red {
+    100% {
+      /* Larger blur radius */
+      text-shadow:
+        0 0 4px #fff,
+        0 0 11px #fff,
+        0 0 19px #fff,
+        0 0 40px var(--red-neon),
+        0 0 80px var(--red-neon),
+        0 0 90px var(--red-neon),
+        0 0 100px var(--red-neon),
+        0 0 150px var(--red-neon);
+    }
+    0% {
+      /* Smaller blur radius */
+      text-shadow:
+        0 0 2px #fff,
+        0 0 4px #fff,
+        0 0 6px #fff,
+        0 0 10px var(--red-neon),
+        0 0 45px var(--red-neon),
+        0 0 55px var(--red-neon),
+        0 0 70px var(--red-neon),
+        0 0 80px var(--red-neon);
+    }
+}
+
+.neonYellow {
+    color: #fff;
+    text-shadow:
+        0 0 7px #fff,
+        0 0 10px #fff,
+        0 0 21px #fff,
+        0 0 42px var(--yellow-neon),
+        0 0 82px var(--yellow-neon),
+        0 0 92px var(--yellow-neon),
+        0 0 102px var(--yellow-neon),
+        0 0 151px var(--yellow-neon);
+    animation: pulsate-yellow 3s infinite alternate; 
+}
+
+@keyframes pulsate-yellow {
+    100% {
+      /* Larger blur radius */
+      text-shadow:
+        0 0 4px #fff,
+        0 0 11px #fff,
+        0 0 19px #fff,
+        0 0 40px var(--yellow-neon),
+        0 0 80px var(--yellow-neon),
+        0 0 90px var(--yellow-neon),
+        0 0 100px var(--yellow-neon),
+        0 0 150px var(--yellow-neon);
+    }
+    0% {
+      /* Smaller blur radius */
+      text-shadow:
+        0 0 2px #fff,
+        0 0 4px #fff,
+        0 0 6px #fff,
+        0 0 10px var(--yellow-neon),
+        0 0 45px var(--yellow-neon),
+        0 0 55px var(--yellow-neon),
+        0 0 70px var(--yellow-neon),
+        0 0 80px var(--yellow-neon);
+    }
 }
