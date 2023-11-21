@@ -10,13 +10,30 @@ html {
     gap: 2rem;
 }
 
-#content {
+#top-bar {
+    padding-top: 1rem;
+    width: 50%;
+}
+
+#top-bar h1 {
+    text-align: center;
+}
+
+#top-bar nav{
+    align-items: center;
     display: flex;
-    flex-direction: column;
-    font-family: Arial, sans-serif;
     justify-content: space-evenly;
+}
+
+#content {
+    align-items: center;
+    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 250px);
+    font-family: Arial, sans-serif;
     gap: 2rem;
-    padding-top: 2rem;
+    padding-top: 0.5rem;
+    width: 80%;
 }
 
 .card {
@@ -28,11 +45,10 @@ html {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    height: 270px;
+    height: 250px;
     padding: 0.5rem;
     padding-bottom: 1rem;
     transition: all 0.5s;
-    width: 250px;
 }
 
 .card img {
@@ -48,12 +64,8 @@ html {
 }
 
 @media only screen and (min-width: 1000px) {
-    #content {
-        flex-direction: row;
-    }
     .card:hover {
-        height: 310px;
-        width: 300px;
+        transform: scale(1.1);
     }
 }
 

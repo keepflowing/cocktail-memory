@@ -69,16 +69,16 @@ function App() {
       if(score + 1 > highScore) {
         setHighScore(score + 1)
       }
+      if (clicked.length === drinks.length - 1) {
+        setNum(num + 1);
+        setClicked([])
+      }
     } else {
       setClicked([])
       setNum(3)
       setScore(0)
     }
     setDrinks(shuffle([...drinks]))
-    if (clicked.length === drinks.length - 1) {
-      setNum(num + 1);
-      setClicked([])
-    }
   }
 
   const handleNumChange = async (num) => {
@@ -99,13 +99,18 @@ function App() {
   }, [num])
 
   return (
-    <>
+    <>  
+      <div id='top-bar'>
+        <h1>Welcome to the bar!</h1>
+        <nav>
+          <p>Current level: {clicked.length}/{drinks.length}</p>
+          <p>Score: {score} | High Score: {highScore}</p>
+          <button onClick={() => setNum(3)}>Restart</button>
+        </nav>
+      </div>
       <div id='content'>
        <GenerateCards drinks={drinks} num={num} handleClick={handleClick}/>
       </div>
-      <p>Current level: {clicked.length}/{drinks.length}</p>
-      <p>Score: {score} | High Score: {highScore}</p>
-      <button onClick={() => setNum(3)}>Restart</button>
     </>
   )
 }
