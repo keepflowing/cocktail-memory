@@ -18,7 +18,7 @@ function shuffle(array) {
   return array;
 }
 
-function GenerateCards({drinks, num, handleClick}) {
+function GenerateCards({drinks, num, handleClick, open={open}}) {
   const arr = []
   for (let i = 0; i < num; i++) {
     arr.push(i)
@@ -31,20 +31,24 @@ function GenerateCards({drinks, num, handleClick}) {
           key={n} 
           drinkId={drinks[n] && drinks[n].idDrink}
           handleClick={handleClick}
+          open={open}
+          ingredients={drinks[n] && drinks[n].strIngredient1}
           name={drinks[n] ? drinks[n].strDrink : 'Loading...'}
           url={drinks[n] ? drinks[n].strDrinkThumb : 'archerload.gif'}/>)}
     </>
   )
 }
 
-function Card({name, url, drinkId, handleClick}) {
+function Card({name, url, drinkId, handleClick, open, ingredients}) {
   return (
     <div 
       className='card'
       onClick={() => handleClick(drinkId)}
     >
       <h2 className='neonWhite'>{name}</h2>
-      <img src={url}/>
+      {
+        !open ? <img src={url}/> : <p>{ingredients}</p>
+      }
     </div>
   )
 }
@@ -55,6 +59,7 @@ function App() {
   const [score, setScore] = useState(0)
   const [highScore, setHighScore] = useState(0)
   const [num, setNum] = useState(3)
+  const [open, setOpen] = useState(false)
 
   const handleClick = (id) => {
     let count = 0;
@@ -107,11 +112,16 @@ function App() {
         <nav>
           <p className='neonYellow'>Current level: {clicked.length}/{drinks.length}</p>
           <p className='neonRed'>Score: {score} | High Score: {highScore}</p>
-          <p className='neonYellow'><a href='https://github.com/keepflowing/cocktail-memory'>Github repository</a></p>
+          <p className='neonYellow' 
+            onClick={() => setOpen(!open)}>Show recipes</p>
         </nav>
       </div>
       <div id='content'>
-       <GenerateCards drinks={drinks} num={num} handleClick={handleClick}/>
+       <GenerateCards 
+        drinks={drinks} 
+        num={num} 
+        handleClick={handleClick} 
+        open={open}/>
       </div>
     </>
   )
