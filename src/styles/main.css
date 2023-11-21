@@ -12,6 +12,7 @@ html {
 
 #content {
     display: flex;
+    flex-direction: column;
     font-family: Arial, sans-serif;
     justify-content: space-evenly;
     gap: 2rem;
@@ -47,6 +48,9 @@ html {
 }
 
 @media only screen and (min-width: 1000px) {
+    #content {
+        flex-direction: row;
+    }
     .card:hover {
         height: 310px;
         width: 300px;
