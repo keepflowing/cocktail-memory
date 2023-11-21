@@ -46,9 +46,11 @@ html {
     white-space: nowrap;
 }
 
-.card:hover {
-    height: 310px;
-    width: 300px;
+@media only screen and (min-width: 1000px) {
+    .card:hover {
+        height: 310px;
+        width: 300px;
+    }
 }
 
 button {
