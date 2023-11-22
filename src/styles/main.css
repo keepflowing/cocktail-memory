@@ -22,7 +22,7 @@ html {
 #top-bar {
     font-size: 1.5rem;
     margin-top: 2rem;
-    width: 50%;
+    width: 100%;
 }
 
 #top-bar h1 {
@@ -124,7 +124,10 @@ ul {
     font-size: 1.5rem;
 }
 
-@media only screen and (min-width: 1000px) {
+@media only screen and (min-width: 900px) {
+    #top-bar{
+        width: 80%;
+    }
     .card:hover {
         box-shadow:
         0 0 7px var(--blue-neon),
@@ -134,6 +137,24 @@ ul {
         0 0 7px var(--blue-neon),
         0 0 10px var(--blue-neon),
         0 0 21px var(--blue-neon);
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+    #top-bar{
+        width: 70%;
+    }
+}
+
+@media only screen and (min-width: 1100px) {
+    #top-bar{
+        width: 60%;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    #top-bar{
+        width: 50%;
     }
 }
 
