@@ -2,20 +2,41 @@ import { useState, useEffect } from "react";
 
 function shuffle(array) {
   let currentIndex = array.length,  randomIndex;
-
-  // While there remain elements to shuffle.
   while (currentIndex > 0) {
-
-    // Pick a remaining element.
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex--;
-
-    // And swap it with the current element.
     [array[currentIndex], array[randomIndex]] = [
       array[randomIndex], array[currentIndex]];
   }
-
   return array;
+}
+
+function Ingredients({drink}) {
+  const [isHovered, setIsHovered] = useState(false)
+  const ingredients = []
+  for (let i = 0; i < 15; i++) {
+    let str = ''
+    if (drink[`strIngredient${i+1}`]) {
+      str = drink[`strIngredient${i+1}`]
+      if ((drink[`strMeasure${i+1}`])) {
+        str = `${drink[`strMeasure${i+1}`]} ${str}`
+      }
+      ingredients.push(str)
+    } else {
+      break
+    }
+  }
+  return (
+  <div 
+    onMouseEnter={() => setIsHovered(true)}
+    onMouseLeave={() => setIsHovered(false)}
+  >
+    <ul>
+    {isHovered ? <p>{drink.strInstructions}</p> 
+    : ingredients.map((e, i) => <li key={i}>{e}</li>)}
+    </ul>
+  </div>
+  )
 }
 
 function GenerateCards({drinks, num, handleClick, open={open}}) {
@@ -32,7 +53,7 @@ function GenerateCards({drinks, num, handleClick, open={open}}) {
           drinkId={drinks[n] && drinks[n].idDrink}
           handleClick={handleClick}
           open={open}
-          ingredients={drinks[n] && drinks[n].strIngredient1}
+          ingredients={drinks[n] && <Ingredients drink={drinks[n]}/>}
           name={drinks[n] ? drinks[n].strDrink : 'Loading...'}
           url={drinks[n] ? drinks[n].strDrinkThumb : 'archerload.gif'}/>)}
     </>
@@ -47,7 +68,7 @@ function Card({name, url, drinkId, handleClick, open, ingredients}) {
     >
       <h2 className='neonWhite'>{name}</h2>
       {
-        !open ? <img src={url}/> : <p>{ingredients}</p>
+        !open ? <img src={url}/> : <>{ingredients}</>
       }
     </div>
   )
@@ -112,7 +133,7 @@ function App() {
         <nav>
           <p className='neonYellow'>Current level: {clicked.length}/{drinks.length}</p>
           <p className='neonRed'>Score: {score} | High Score: {highScore}</p>
-          <p className='neonYellow' 
+          <p className='neonYellow link' 
             onClick={() => setOpen(!open)}>Show recipes</p>
         </nav>
       </div>

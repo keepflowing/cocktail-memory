@@ -8,8 +8,8 @@ html {
 
 :root {
     --blue-neon: #00ffff;
-    --yellow-neon: rgb(3, 251, 56);
-    --red-neon: rgb(195, 4, 11);
+    --yellow-neon: rgb(91, 58, 255);
+    --red-neon: #ff5555;
 }  
 
 #root {
@@ -64,10 +64,20 @@ html {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    height: 240px;
+    min-height: 240px;
     padding: 0.5rem;
     padding-bottom: 1rem;
     transition: all 0.2s;
+}
+
+.card div {
+    margin-top: 1rem;
+    color: fff;
+    text-shadow:
+        0 0 7px #ff5555,
+        0 0 10px #ff5555,
+        0 0 21px #ff5555;
+    width: 80%;
 }
 
 .card img {
@@ -78,6 +88,20 @@ html {
 nav p {
     text-align: left;
     width: 20%;
+}
+
+nav p.link {
+    cursor: pointer
+}
+
+nav p.link:hover {
+    text-shadow:
+        0 0 42px var(--blue-neon),
+        0 0 82px var(--blue-neon),
+        0 0 92px var(--blue-neon),
+        0 0 102px var(--blue-neon),
+        0 0 151px var(--blue-neon);
+    animation: pulsate-blue 2.5s infinite alternate; 
 }
 
 nav :nth-child(2) {
@@ -94,6 +118,11 @@ nav :nth-child(3) {
     font-weight: 800;
     text-align: center;
     white-space: nowrap;
+}
+
+ul {
+    list-style-type: square;
+    font-size: 1.5rem;
 }
 
 @media only screen and (min-width: 1000px) {
