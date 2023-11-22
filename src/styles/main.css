@@ -38,7 +38,7 @@ html {
 }
 
 #content {
-    align-items: center;
+    align-items: self-start;
     justify-content: center;
     display: grid;
     grid-template-columns: repeat(auto-fit, 250px);
@@ -67,7 +67,6 @@ html {
     min-height: 240px;
     padding: 0.5rem;
     padding-bottom: 1rem;
-    transition: all 0.2s;
 }
 
 .card div {
