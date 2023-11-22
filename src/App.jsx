@@ -64,7 +64,9 @@ function Card({name, url, drinkId, handleClick, open, ingredients}) {
   return (
     <div 
       className='card'
-      onClick={() => handleClick(drinkId)}
+      onClick={() => {
+        if(!open) handleClick(drinkId)
+      }}
     >
       <h2 className='neonWhite'>{name}</h2>
       {
